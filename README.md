@@ -2,11 +2,12 @@
 
 ## 参考
 
-    ・ https://www.atmarkit.co.jp/ait/articles/1807/31/news042.html
+・ https://www.atmarkit.co.jp/ait/articles/1807/31/news042.html
 
 
 ## 確認
-    ・ http://127.0.0.1:5000/
+
+・ http://127.0.0.1:5000/
 
 
 ### めも
