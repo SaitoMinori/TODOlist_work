@@ -28,3 +28,17 @@ document.myform.submit()
 # リストを[done]して以下にアクセスするのと同じ効果
 http://127.0.0.1:5000/deletealldoneitems
 ```
+
+## VS CodeとPythonとFlaskでお手軽Web API開発
+
+・ https://www.atmarkit.co.jp/ait/articles/1808/21/news036.html
+```bash
+flask run
+# 別コマンドプロンプト
+# 新規に項目を作成
+curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"play game\"}" http://localhost:5000/api/todoitems
+
+# 全項目取得
+curl -H "Content-type: application/json" -X GET http://localhost:5000/api/todoitems
+```
+VS Codeのコマンドパレットから［Python: Create Terminal］コマンドを実行して、仮想環境が有効化されたターミナルを開き、そこで「flask run」コマンドを実行しアプリを起動した後に、［ターミナルの分割］ボタンをクリックして、1つのターミナルウィンドウにアプリからのメッセージとコマンドプロンプトを表示するようにしている。これにより、右側のコマンドプロンプトでcurlコマンドを実行すると、Web APIがどう反応しているかを左側のペーンで確認できる。

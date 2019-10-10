@@ -52,8 +52,3 @@ def update_todoitem(item_id):
     item.done = not item.done
     db.session.commit()
     return item_schema.jsonify(item)
-
-
-# おまじない
-if __name__ == "__main__":
-    app.run(debug=True)
