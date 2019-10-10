@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List sample app</title>
+    <!-- スタイルシートへの参照を追加 -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}" />
+</head>
+
+<body>
+    <h1>ToDo List hoge</h1>
+    <!-- todolist変数が空のリストかどうか -->
+    {% if not todolist %}
+    <p>you can register something to do.</p>
+    {% else %}
+    <p>your todo list:</p>
+    {% endif %}
+    <ul>
+        <!-- リストの各要素を反復処理 -->
+        {% for item in todolist %}
+        <!-- 完了した項目については文字色をライトグレーにする -->
+        <li {% if item.done %}style="color: lightgray" {% endif %}>
+            {{ item.title }}
+            <!-- <a>要素はapp.pyファイルで定義したURL（/updatedoneと/deleteitem）へのリンク -->
+            <!-- それぞれupdate_todoitemdone関数とdelete_todoitem関数が呼び出される -->
+            <a href="/updatedone/{{ item.item_id }}">[done!]</a>
+            <a href="/deleteitem/{{ item.item_id }}">[delete]</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- ToDo項目を登録するフォーム -->
+    <form action="/additem" method="post" name="myform">
+        <p>
+            <input type="text" name="title">
+        </p>
+        <a href="javascript:document.myform.submit()" class="button">submit</a>
+        <a href="/deletealldoneitems" class="button">delete all done items</a>
+    </form>
+</body>
+
+</html>
