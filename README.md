@@ -42,3 +42,13 @@ curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"play game\"}"
 curl -H "Content-type: application/json" -X GET http://localhost:5000/api/todoitems
 ```
 VS Codeのコマンドパレットから［Python: Create Terminal］コマンドを実行して、仮想環境が有効化されたターミナルを開き、そこで「flask run」コマンドを実行しアプリを起動した後に、［ターミナルの分割］ボタンをクリックして、1つのターミナルウィンドウにアプリからのメッセージとコマンドプロンプトを表示するようにしている。これにより、右側のコマンドプロンプトでcurlコマンドを実行すると、Web APIがどう反応しているかを左側のペーンで確認できる。
+
+・ https://www.atmarkit.co.jp/ait/articles/1808/21/news036_2.html
+```bash
+curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"buy milk\"}" http://localhost:5000/api/todoitems
+curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"play game\"}" http://localhost:5000/api/todoitems
+curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"write article\"}" http://localhost:5000/api/todoitems
+
+curl -H "Content-type: application/json" -X GET http://localhost:5000/api/todoitems
+```
+Flask-Restlessでは、全データを取得すると、objectsプロパティに項目が配列として保存される（この辺りの構造が最初に作成したWeb APIとは異なっている）。また、項目数（num_resultsプロパティ）、ページ数（total_pagesプロパティ）などのプロパティも存在する。デフォルトでは、出力は10件ごとにまとめられて返送されるので、多数のデータを取得するときにはそれなりの追加処理も必要になる点には注意されたい
