@@ -16,8 +16,7 @@
 
 検証⇒ Network ⇒ Disable cache　をチェック
 
-* htmlのなぞについて
-
+* html
 ```bash
 <a href="javascript:document.myform.submit()" class="button">submit</a>
 # 検証のしたのターミナル？で
