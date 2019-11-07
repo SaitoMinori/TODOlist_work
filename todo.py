@@ -1,31 +1,31 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+class ToDoItem:
+    item_id = 0
 
-db = SQLAlchemy()
-ma = Marshmallow()  # Flask-Marshmallowの利用設定
-
-
-def init_db(app):
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/todoitems.db"
-    db.init_app(app)
-    return db
+    def __init__(self, title):
+        self.title = title
+        self.done = False
+        self.item_id = ToDoItem.item_id
+        ToDoItem.item_id += 1
 
 
-def init_schema(app):  # Flask-Marshmallowオブジェクトをappオブジェクトで初期化
-    ma.init_app(app)
+class ToDoList:
+    def __init__(self):
+        self.todolist = []
 
+    def add(self, title):
+        item = ToDoItem(title)
+        self.todolist.append(item)
 
-class ToDoItem(db.Model):
-    __tablename__ = "todoitems"
-    item_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    done = db.Column(db.Boolean, nullable=False, default=False)
+    def delete(self, item_id):
+        self.todolist = [x for x in self.todolist if x.item_id != item_id]
+        # delとpassの行は削除する
 
+    def update(self, item_id):
+        item = [x for x in self.todolist if x.item_id == item_id]
+        item[0].done = not item[0].done
 
-class ItemSchema(ma.Schema):
-    class Meta:
-        fields = ("item_id", "title", "done")
+    def get_all(self):
+        return self.todolist
 
-
-item_schema = ItemSchema()
-items_schema = ItemSchema(many=True)
+    def delete_doneitem(self):
+        self.todolist = [x for x in self.todolist if not x.done]
