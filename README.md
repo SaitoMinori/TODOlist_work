@@ -51,3 +51,27 @@ curl -H "Content-Type: application/json" -X POST -d "{\"title\": \"write article
 curl -H "Content-type: application/json" -X GET http://localhost:5000/api/todoitems
 ```
 Flask-Restlessでは、全データを取得すると、objectsプロパティに項目が配列として保存される（この辺りの構造が最初に作成したWeb APIとは異なっている）。また、項目数（num_resultsプロパティ）、ページ数（total_pagesプロパティ）などのプロパティも存在する。デフォルトでは、出力は10件ごとにまとめられて返送されるので、多数のデータを取得するときにはそれなりの追加処理も必要になる点には注意されたい
+
+
+## VS CodeとFlask-SQLAlchemyでデータベース操作 (2/2)
+
+* https://www.atmarkit.co.jp/ait/articles/1808/07/news029_2.html
+
+```bash
+flask shell
+>>> from todo import db
+>>> db
+<SQLAlchemy engine=sqlite:////home/minorisaito/github/SaitoMinori/TODOlist_work/db/todoitems.db>
+>>> db.create_all()
+
+cd db
+sqlite3 todoitems.db
+sqlite> select *
+   ...> from todoitems;
+1|あいうえお|1
+2|かきくけこ|0
+3|play game|0
+
+# 確認 　http://127.0.0.1:5000/
+FLASK_APP=app.py FLASK_DEBUG=1 python -m flask run
+```

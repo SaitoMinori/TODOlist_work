@@ -1,7 +1,9 @@
 from flask import Flask, render_template, redirect, request
-from todo import ToDoList
+from todo import ToDoList, init_db
 
 app = Flask(__name__)
+
+db = init_db(app)
 
 todolist = ToDoList()
 
@@ -27,13 +29,15 @@ def delete_todoitem(item_id):
     return redirect("/")
 
 
-@app.route("/updatedone/<int:item_id>")
-def update_todoitemdone(item_id):
-    todolist.update(item_id)
-    return redirect("/")
-
-
 @app.route("/deletealldoneitems")
 def delete_alldoneitems():
     todolist.delete_doneitem()
+    return redirect("/")
+
+
+@app.route("/updatedone", methods=["POST"])
+def update_done():
+    keys = request.form.keys()
+    items = [int(x) for x in keys]
+    todolist.update_done(items)
     return redirect("/")
