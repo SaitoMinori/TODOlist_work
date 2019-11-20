@@ -10,6 +10,8 @@ autopep8 = "*"
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
+robotframework = "*"
+robotframework-selenium2library = "*"
 
 [requires]
 python_version = "3.7"

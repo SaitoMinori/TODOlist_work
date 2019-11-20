@@ -17,7 +17,7 @@ def show_todolist():
 def add_item():
     title = request.form["title"]
     if not title:
-        return redirect("/")
+        return render_template("showtodo.html", todolist=todolist.get_all(), title=title)
 
     todolist.add(title)
     return redirect("/")

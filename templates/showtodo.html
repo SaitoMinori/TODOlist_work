@@ -13,10 +13,18 @@
     <form action="/additem" method="post" name="registerform">
         <p>
             something to do:
+            {% if title == "" %}
+            <input type="text" name="title" style="background-color:red;">
+            {% else %}
             <input type="text" name="title">
+            {% endif %}
             <a href="javascript:document.registerform.submit()" class="button">submit</a>
         </p>
     </form>
+
+    {% if title == "" %}
+    <p style="color: red"> No input!! </p>
+    {% endif %}
 
     {% if todolist %}
     <p>here your todos</p>
