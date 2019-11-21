@@ -66,11 +66,14 @@ flask shell
 
 cd db
 sqlite3 todoitems.db
-sqlite> select *
-   ...> from todoitems;
-1|あいうえお|1
-2|かきくけこ|0
-3|play game|0
+# 初期データ投入
+sqlite> .mode csv
+sqlite> .import ./input.csv todoitems
+sqlite> select * from todoitems;
+1,"buy milk",0
+2,"write article",0
+3,"eat cake",0
+Ctrl + D で終了
 
 # 確認 　http://127.0.0.1:5000/
 FLASK_APP=app.py FLASK_DEBUG=1 python -m flask run
